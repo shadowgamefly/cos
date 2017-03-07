@@ -20,7 +20,7 @@ from django.conf import settings
 from . import views
 
 urlpatterns = [
-    url(r'(?P<car_id>[0-9]+)', views.userDetail, name='detail')
+    url(r'(?P<user_id>[a-z]+)', views.userFeed, name='feed'),
     url(r'^$', views.index, name='home'),
     url(r'^admin/', admin.site.urls),
 ]
