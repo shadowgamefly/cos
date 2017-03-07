@@ -19,8 +19,12 @@ from django.conf.urls.static import static
 from django.conf import settings
 from . import views
 
-urlpatterns = [
-    url(r'(?P<user_id>[a-z]+)', views.userFeed, name='feed'),
+statics = static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+pages = [
+    # url(r'(?P<user_id>[a-z]+)', views.userFeed, name='feed'),
     url(r'^$', views.index, name='home'),
     url(r'^admin/', admin.site.urls),
 ]
+
+urlpatterns = pages + statics
