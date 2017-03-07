@@ -1,0 +1,7 @@
+news:
+    image: shadowgamefly/cs4501
+    volumes:
+      -  ./newsfeed:/app
+    ports:
+      - "8000:8000"
+    command: bash -c "python manage.py migrate && mod_wsgi-express start-server --working-directory /app --reload-on-changes /app/newsfeed/wsgi.py"
