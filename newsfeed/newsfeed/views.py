@@ -6,7 +6,7 @@ from collections import Counter
 import operator
 import copy
 
-def userProjects(userid): #give name, projects,
+def userProjectsFind(userid): #give name, projects,
     url = "https://api.osf.io/v2/users/" + userid
     url_nodes = url + "/nodes" + "?format=json";
     response_node = urllib.request.urlopen(url_nodes)
@@ -18,6 +18,14 @@ def userProjects(userid): #give name, projects,
     for pro in projects :
         p[pro] = 50
     return Counter(p)
+
+def numProjects(userid):
+    url = "https://api.osf.io/v2/users/" + userid
+    url_nodes = url + "/nodes" + "?format=json";
+    response_node = urllib.request.urlopen(url_nodes)
+    data = json.loads(response_node.read().decode('utf-8'))
+    projects = []
+    return len(data['data'])
 
 def searchTag(tag):
     project_titles = []
@@ -59,8 +67,10 @@ def retrieveUserInfo(user_id):
     url = "https://api.osf.io/v2/users/" + user_id + "/?format=json"
     response_node = urllib.request.urlopen(url)
     data = json.loads(response_node.read().decode('utf-8'))
+    photo = data["data"]["links"]["profile_image"]
     data = data["data"]["attributes"]
     data["id"] = user_id
+    data["photo"] = photo
     return data
 
 def projToUser(projid):
@@ -91,7 +101,7 @@ def userFeed(request):
     users = followedUser(user_id)
     userPro = Counter({})
     for user in users:
-        userPro = userPro + userProjects(user)
+        userPro = userPro + userProjectsFind(user)
     # add them together
     l = userPro + tagProjects
 
@@ -136,6 +146,9 @@ def userFeed(request):
         project = sorted_l[i]
         user = projToUser(project)
         userInfo = retrieveUserInfo(user)
+        userProjects = numProjects(users[i])
+        userInfo["numofProjects"] = userProjects
+        userInfo["date_registered"] = userInfo["date_registered"][:10]
         userList.append(userInfo)
 
     return render(request, 'userfeed.html', {'projects': projectList, 'users': userList})
@@ -152,8 +165,10 @@ def userFollow(request):
     userList=[]
     for i in range(2):
         userInfo = retrieveUserInfo(users[i])
+        userProjects = numProjects(users[i])
+        userInfo["numofProjects"] = userProjects
+        userInfo["date_registered"] = userInfo["date_registered"][:10]
         userList.append(userInfo)
-
 
     return render(request, 'follow.html', {'projects': projectList, 'users': userList})
 

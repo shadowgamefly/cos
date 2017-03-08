@@ -58,13 +58,21 @@
       </div>
 
       <div class="col-sm-9">
-
+        <p> Recommended Users </p>
+        <hr>
         <div class="row">
           {%for user in users%}
           <div class="col-sm-6">
             <div class="chart-wrapper">
               <div class="chart-stage">
-                <p>userName : {{user.full_name}}</p>
+                <div class = "row">
+                <div class="col-sm-3">
+                <img src="{{user.photo}}" width="50" />
+                </div>
+                <div class="col-sm-3">
+                <p>{{user.full_name}}</p>
+                </div>
+                </div>
                 <p>userCreated : {{user.date_registered}}</p>
               </div>
               <div class="chart-notes">
@@ -74,13 +82,15 @@
           </div>
           {% endfor %}
         </div>
-
+        <p> Recommended Projects </p>
+        <hr>
           {% for project in projects %}
+          {% if project.description %}
           <div class = "row">
           <div class="col-sm-12">
             <div class="chart-wrapper">
               <div class="chart-title">
-                <p>Recommended based on {{project.base}}</p>
+                <i>Recommended based on {{project.base}}</i>
               </div>
 
               <div class="chart-stage">
@@ -106,6 +116,7 @@
             </div>
           </div>
         </div>
+          {% endif  %}
           {% endfor %}
 
       </div>

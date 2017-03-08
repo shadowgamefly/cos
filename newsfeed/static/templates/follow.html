@@ -41,7 +41,6 @@
   <div class="container-fluid">
 
     <div class="row">
-
       <div class="col-sm-3" style="position: fixed">
         <div class="chart-wrapper">
 
@@ -58,14 +57,23 @@
       </div>
 
       <div class="col-sm-9">
-
+          <p> Followed Users </p>
+          <hr>
         <div class="row">
           {%for user in users%}
           <div class="col-sm-6">
             <div class="chart-wrapper">
               <div class="chart-stage">
-                <p>userName : {{user.full_name}}</p>
-                <p>userCreated : {{user.date_registered}}</p>
+                <div class = "row">
+                <div class="col-sm-6">
+                <img src="{{user.photo}}" width="50" />
+                </div>
+                <div class="col-sm-6">
+                <p>{{user.full_name}}</p>
+                </div>
+                </div>
+                <p>Open since: {{user.date_registered}}</p>
+                <p>{{user.numofProjects}} projects in progress</p>
               </div>
               <div class="chart-notes">
                   <p><a href="https://osf.io/{{user.id}}">View User</a></p>
@@ -74,7 +82,8 @@
           </div>
           {% endfor %}
         </div>
-
+          <p> Followed projects </p>
+          <hr>
           {% for project in projects %}
           <div class = "row">
           <div class="col-sm-12">
@@ -91,7 +100,7 @@
               {%if project.tags%}
               <div class="chart-notes">
                   {% for tag in project.tags%}
-                  <a class="btn btn-primary" background color = #c9c9ec href="https://osf.io/search/?q=tags:(%22{{tag}}%22)" role="button">{{tag}}</a>
+                  <a class="btn btn-primary" href="https://osf.io/search/?q=tags:(%22{{tag}}%22)" role="button">{{tag}}</a>
                   {% endfor %}
                   </div>
               {% endif %}

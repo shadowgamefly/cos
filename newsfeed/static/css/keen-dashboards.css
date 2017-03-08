@@ -96,3 +96,12 @@ body.application .return-link:hover,
   font-size: 12px;
   padding: 8px 10px 5px;
 }
+
+.btn-primary {
+  background-color: #9595a1;
+  color : white;
+  border-color: #9595a1;
+  padding: 5px 5px;
+  font-size: 13px;
+  margin: 2px;
+}
