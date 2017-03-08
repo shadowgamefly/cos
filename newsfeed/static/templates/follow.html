@@ -57,7 +57,7 @@
       </div>
 
       <div class="col-sm-9">
-          <p> Followed Users </p>
+          <h1> Followed Users </h1>
           <hr>
         <div class="row">
           {%for user in users%}
@@ -69,11 +69,11 @@
                 <img src="{{user.photo}}" width="50" />
                 </div>
                 <div class="col-sm-6">
-                <p>{{user.full_name}}</p>
+                <h4>{{user.full_name}}</h4>
                 </div>
                 </div>
                 <p>Open since: {{user.date_registered}}</p>
-                <p>{{user.numofProjects}} projects in progress</p>
+            
               </div>
               <div class="chart-notes">
                   <p><a href="https://osf.io/{{user.id}}">View User</a></p>
@@ -82,19 +82,20 @@
           </div>
           {% endfor %}
         </div>
-          <p> Followed projects </p>
+          <h1> Followed projects </h1>
           <hr>
           {% for project in projects %}
+          {% if project.description %}
           <div class = "row">
           <div class="col-sm-12">
             <div class="chart-wrapper">
               <div class="chart-stage">
                 <h3>{{project.title}}</h3>
-                {% if project.description %}
+                
+                <p> Date created: {{project.date_created}}   </p>
                 <p>{{project.description}}</p>
-                {% else %}
-                <p>No description provided yet.</p>
-                {% endif %}
+                
+                
                 <p><a href="https://osf.io/{{project.id}}">View details</a></p>
               </div>
               {%if project.tags%}
@@ -107,6 +108,7 @@
             </div>
           </div>
         </div>
+          {% endif %}
           {% endfor %}
 
       </div>

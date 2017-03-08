@@ -34,8 +34,6 @@
   </div> -->
 
 
-
-
   {% include 'header.html' %}
 
   <div class="container-fluid">
@@ -58,7 +56,7 @@
       </div>
 
       <div class="col-sm-9">
-        <p> Recommended Users </p>
+        <h1> Recommended Users </h1>
         <hr>
         <div class="row">
           {%for user in users%}
@@ -82,7 +80,7 @@
           </div>
           {% endfor %}
         </div>
-        <p> Recommended Projects </p>
+        <h1> Recommended Projects </h1>
         <hr>
           {% for project in projects %}
           {% if project.description %}
@@ -105,6 +103,7 @@
               </div>
               {%if project.tags  %}
               <div class="chart-notes">
+                  
                   {% for tag in project.tags%}
 
                   <a class="btn btn-primary" background color = #c9c9ec href="https://osf.io/search/?q=tags:(%22{{tag}}%22)" role="button">{{tag}}</a>
