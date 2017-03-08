@@ -22,7 +22,7 @@ from . import views
 statics = static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 pages = [
-    # url(r'(?P<user_id>[a-z]+)', views.userFeed, name='feed'),
+    url(r'user/(?P<user_id>\w+)', views.userFeed, name='feed'),
     url(r'^$', views.index, name='home'),
     url(r'^admin/', admin.site.urls),
 ]
