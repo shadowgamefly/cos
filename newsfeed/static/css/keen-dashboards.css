@@ -98,10 +98,10 @@ body.application .return-link:hover,
 }
 
 .btn-primary {
-  background-color: #9595a1;
-  color : white;
-  border-color: #9595a1;
-  padding: 5px 5px;
-  font-size: 13px;
-  margin: 2px;
+    background-color: #CAE6F2;
+    color: black;
+    border-color: #CAE6F2;
+    padding: 5px 5px;
+    font-size : 13px;
+    margin: 5px 2px;
 }
