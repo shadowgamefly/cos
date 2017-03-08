@@ -80,7 +80,8 @@ def followedTags(user_id):
 #         projects = Counter({"ajsga":50})
 #     return projects
 
-def userFeed(request, user_id):
+def userFeed(request):
+    user_id = "abc"
     l = Counter({})
     Tags = followedTags(user_id)
     for tag in Tags :
@@ -89,19 +90,32 @@ def userFeed(request, user_id):
     for user in users:
         l = l + userProjects(user)
     l = dict(l)
-
     followed = followedProject(user_id)
-
     keyList = []
     for key in l.keys() :
         keyList.append(key)
-
     for k in keyList :
         if k in followed:
             del l[k]
-
     sorted_l = sorted(l.items(), key=operator.itemgetter(1))[::-1]
-    return HttpResponse(sorted_l)
+    sorted_l = [key[0] for key in sorted_l]
+    infoList = []
+    counter = 0
+    for project in sorted_l:
+        if counter > 5 :
+            break
+        projectInfo = retrieveProjectInfo(project)
+        infoList.append(projectInfo)
+        counter += 1
+    return render(request, 'layout.html', {'projects': infoList})
+
+def retrieveProjectInfo(project_id):
+    url = "https://api.osf.io/v2/nodes/" + project_id + "?format=json";
+    response_node = urllib.request.urlopen(url)
+    data = json.loads(response_node.read().decode('utf-8'))
+    data = data["data"]["attributes"]
+    data["id"] = project_id
+    return data
 
 def index(request):
     # template = loader.get_template('layout.html')
