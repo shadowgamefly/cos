@@ -33,6 +33,9 @@
     </div>
   </div> -->
 
+
+
+
   {% include 'header.html' %}
 
   <div class="container-fluid">
@@ -41,67 +44,57 @@
 
       <div class="col-sm-3" style="position: fixed">
         <div class="chart-wrapper">
-          <div class="chart-title">
-            Cell Title
-          </div>
+
           <div class="chart-stage">
-            <!-- <img data-src="holder.js/100%x650/white"> -->
+            <a class="btn btn-primary" background color = #b8c4f2 href="{% url 'home' %}" role="button">View User Feed</a>
           </div>
           <div class="chart-notes">
             Notes about this chart
           </div>
         </div>
       </div>
-      
+
       <div class="col-sm-3">
       </div>
 
       <div class="col-sm-9">
 
         <div class="row">
+          {%for user in users%}
           <div class="col-sm-6">
             <div class="chart-wrapper">
-              <div class="chart-title">
-                Cell Title
-              </div>
               <div class="chart-stage">
-                <img data-src="holder.js/100%x240/white">
+                <p>userName : {{user.full_name}}</p>
+                <p>userCreated : {{user.date_registered}}</p>
               </div>
               <div class="chart-notes">
-                Notes about this chart
+                  <p><a href="https://osf.io/{{user.id}}">View User</a></p>
               </div>
             </div>
           </div>
-
-          <div class="col-sm-6">
-            <div class="chart-wrapper">
-              <div class="chart-title">
-                Cell Title
-              </div>
-              <div class="chart-stage">
-                <img data-src="holder.js/100%x240/white">
-              </div>
-              <div class="chart-notes">
-                Notes about this chart
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
 
           {% for project in projects %}
           <div class = "row">
           <div class="col-sm-12">
             <div class="chart-wrapper">
-              <div class="chart-title">
-                Cell Title
-              </div>
               <div class="chart-stage">
                 <h3>{{project.title}}</h3>
-                <p>description: {{project.description}}</p>
+                {% if project.description %}
+                <p>{{project.description}}</p>
+                {% else %}
+                <p>No description provided yet.</p>
+                {% endif %}
+                <p><a href="https://osf.io/{{project.id}}">View details</a></p>
               </div>
+              {%if project.tags%}
               <div class="chart-notes">
-                <p><a href="https://osf.io/{{project.id}}">Viewdetails</a></p>
-              </div>
+                  {% for tag in project.tags%}
+                  <a class="btn btn-primary" background color = #c9c9ec href="https://osf.io/search/?q=tags:(%22{{tag}}%22)" role="button">{{tag}}</a>
+                  {% endfor %}
+                  </div>
+              {% endif %}
             </div>
           </div>
         </div>

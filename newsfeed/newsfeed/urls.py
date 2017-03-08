@@ -24,6 +24,7 @@ statics = static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 pages = [
     # url(r'users/(?P<user_id>\w+)', views.userFeed, name='feed'),
     url(r'^$', views.userFeed, name='home'),
+    url(r'^followed', views.userFollow, name='follow'),
     url(r'^admin/', admin.site.urls),
 ]
 
