@@ -36,21 +36,21 @@
 
   {% include 'header.html' %}
 
-  <div class="container-fluid">
-
+<div class="container-fluid">
+    
     <div class="row">
-
-      <div class="col-sm-3" style="position: fixed">
-        <div class="chart-wrapper">
-
-          <div class="chart-stage">
-            <a class="btn btn-primary" background color = #b8c4f2 href="{% url 'follow' %}" role="button">View Followed Projects</a>
-          </div>
-          <div class="chart-notes">
-            Notes about this chart
-          </div>
+        <div class="col-sm-3" style="position: fixed">
+            <div class="chart-wrapper">
+                <div class="chart-stage">
+                    <!-- <a class="btn btn-primary" background color = #b8c4f2 href="{% url 'home' %}" role="button">View User Feed</a> -->
+                    <a class="twitter-timeline"
+                        href="https://twitter.com/osframework" data-chrome="nofooter"
+                        data-tweet-limit="2">
+                        Tweets by @twittername</a>
+                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </div>
         </div>
-      </div>
 
       <div class="col-sm-3">
       </div>
@@ -89,21 +89,21 @@
             <div class="chart-wrapper">
               <div class="chart-title">
                 <i>Recommended based on {{project.base}}</i>
+                <div class = "twitter" align = "right" top-margin = "-5px">
+                <a href="https://twitter.com/share"  class="twitter-share-button" "data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
               </div>
 
               <div class="chart-stage">
                 <h3>{{project.title}}</h3>
-                {% if project.description %}
                 <p>{{project.description}}</p>
-                {% else %}
-                <p>No description provided yet.</p>
-                {% endif %}
                 <p><a href="https://osf.io/{{project.id}}">View details</a></p>
 
               </div>
+           
               {%if project.tags  %}
-              <div class="chart-notes">
-                  
+             
+                      <div class="chart-notes">
                   {% for tag in project.tags%}
 
                   <a class="btn btn-primary" background color = #c9c9ec href="https://osf.io/search/?q=tags:(%22{{tag}}%22)" role="button">{{tag}}</a>
@@ -111,6 +111,7 @@
                   {% endfor %}
                   </div>
                   {% endif %}
+
 
             </div>
           </div>
