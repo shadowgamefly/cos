@@ -179,6 +179,8 @@ def userFollow(request):
 
     return render(request, 'follow.html', {'projects': projectList, 'users': userList})
 
+def load_page(request):
+    return render(request, 'load_page.html')
 
 
 # def projectInTag(tag):

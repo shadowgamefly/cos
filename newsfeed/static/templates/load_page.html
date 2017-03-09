@@ -1,0 +1,18 @@
+<html>
+
+      <title>Index</title>
+      <script>
+      $(document).ready(function() {
+    $("#extra-content").hide();
+    $("#toggle-content").click(function(){
+        $("#extra-content").show();
+        $("#toggle-content").hide();
+    });
+});
+      </script>
+   <body>
+     <input type="submit" class="btn-link" name="comment"
+   value="Add a comment" id="toggle-content" />
+   <div id="extra-content">{% include "follow.html" %}</div>
+   </body>
+</html>

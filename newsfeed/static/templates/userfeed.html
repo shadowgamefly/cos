@@ -41,14 +41,11 @@
     <div class="row">
         <div class="col-sm-3" style="position: fixed">
           <a class="twitter-timeline"
-             height= "700"
+             height= "500"
     href="https://twitter.com/osframework" data-chrome="nofooter">
     Tweets by @twittername</a>
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
-                    <!-- <a class="btn btn-primary" background color = #b8c4f2 href="{% url 'home' %}" role="button">View User Feed</a> -->
-
-
       <div class="col-sm-3">
       </div>
 
@@ -96,10 +93,19 @@
               </div>
 
               <div class="chart-stage">
-                <h3>{{project.title}}</h3>
-                <p>{{project.description}}</p>
-                <p><a href="https://osf.io/{{project.id}}">View details</a></p>
+                <h3>{{project.title}}  <small><a href="https://osf.io/{{project.id}}"<span class="glyphicon glyphicon-share" aria-hidden="true"></span></a> </small></h3>
+                <p> Date created: {{project.date_created}}   </p>
+                <p class="collapse">{{project.description}}</p>
 
+                <div class="collapse" id={{project.id}}>
+                  <div class="card card-block">
+                      <p>{{project.description}}</p>
+                  </div>
+                </div>
+
+                <p><a data-target="#{{project.id}}" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls={{project.id}}>
+                  View Description
+                </a></p>
               </div>
 
               {%if project.tags  %}
