@@ -42,19 +42,13 @@
 
     <div class="row">
       <div class="col-sm-3" style="position: fixed">
-        <div class="chart-wrapper">
-          <div class="chart-stage">
             <!-- <a class="btn btn-primary" background color = #b8c4f2 href="{% url 'home' %}" role="button">View User Feed</a> -->
             <a class="twitter-timeline"
-      href="https://twitter.com/realDonaldTrump" data-chrome="nofooter"
+               height= "100"
+      href="https://twitter.com/osframework" data-chrome="nofooter"
       data-tweet-limit="2">
       Tweets by @twittername</a>
       <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-          </div>
-          <div class="chart-notes">
-            Notes about this chart
-          </div>
-        </div>
       </div>
 
       <div class="col-sm-3">
@@ -93,6 +87,14 @@
           <div class = "row">
           <div class="col-sm-12">
             <div class="chart-wrapper">
+                <div class="chart-title">
+                    
+                    <div class = "twitter" align = "right" top-margin = "1px">
+                        <a href="https://twitter.com/share"  class="twitter-share-button" "data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </div>
+                            </div>
+
+                
               <div class="chart-stage">
                 <h3>{{project.title}}</h3>
                 
