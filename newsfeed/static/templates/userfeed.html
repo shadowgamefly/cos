@@ -40,38 +40,36 @@
 
     <div class="row">
         <div class="col-sm-3" style="position: fixed">
-            <div class="chart-wrapper">
-                <div class="chart-stage">
-                    <!-- <a class="btn btn-primary" background color = #b8c4f2 href="{% url 'home' %}" role="button">View User Feed</a> -->
-                    <a class="twitter-timeline"
-                       height= "500"
-              href="https://twitter.com/osframework" data-chrome="nofooter">
-              Tweets by @twittername</a>
-                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </div>
-            </div>
-        </div>
-
+          <a class="twitter-timeline"
+             height= "500"
+    href="https://twitter.com/osframework" data-chrome="nofooter">
+    Tweets by @twittername</a>
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
       <div class="col-sm-3">
       </div>
 
       <div class="col-sm-9">
-        <h1> Recommended Users </h1>
-        <hr>
+          <h2> Recommended Users </h2>
+          <hr>
         <div class="row">
-          {%for user in users%}
+          {%for user in users %}
           <div class="col-sm-6">
             <div class="chart-wrapper">
               <div class="chart-stage">
                 <div class = "row">
-                <div class="col-sm-3">
-                <img src="{{user.photo}}" width="50" />
+                <div class="col-sm-6">
+                <img src="{{user.photo}}" width="100" />
                 </div>
-                <div class="col-sm-3">
-                <p>{{user.full_name}}</p>
+                <div class="col-sm-6">
+                  <h5>{{user.full_name}}</h5>
+                    <p>Open Since : {{user.date_registered}}</p>
+                    <p> Number of Public Projects: {{user.numProjects}}</p>
+
                 </div>
                 </div>
-                <p>userCreated : {{user.date_registered}}</p>
+
+
               </div>
               <div class="chart-notes">
                   <p><a href="https://osf.io/{{user.id}}">View User</a></p>
@@ -80,7 +78,7 @@
           </div>
           {% endfor %}
         </div>
-        <h1> Recommended Projects </h1>
+        <h2> Recommended Projects </h2>
         <hr>
           {% for project in projects %}
           {% if project.description %}

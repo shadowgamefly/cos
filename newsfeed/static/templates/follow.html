@@ -7,32 +7,6 @@
   <link rel="stylesheet" href="static/css/keen-dashboards.css" >
 </head>
 <body class="application">
-<!--
-  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="../">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="navbar-brand" href="./">Layouts &raquo; Hero Sidebar</a>
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-left">
-          <li><a href="https://keen.io">Home</a></li>
-          <li><a href="https://keen.io/team">Team</a></li>
-          <li><a href="https://github.com/keenlabs/dashboards/tree/gh-pages/layouts/hero-sidebar">Source</a></li>
-          <li><a href="https://groups.google.com/forum/#!forum/keen-io-devs">Community</a></li><li><a href="http://stackoverflow.com/questions/tagged/keen-io?sort=newest&pageSize=15">Technical Support</a></li>
-        </ul>
-      </div>
-    </div>
-  </div> -->
-
 
 
 
@@ -54,22 +28,26 @@
       </div>
 
       <div class="col-sm-9">
-          <h1> Followed Users </h1>
+          <h2> Followed Users </h2>
           <hr>
         <div class="row">
-          {%for user in users%}
+          {%for user in users %}
           <div class="col-sm-6">
             <div class="chart-wrapper">
               <div class="chart-stage">
                 <div class = "row">
                 <div class="col-sm-6">
-                <img src="{{user.photo}}" width="50" />
+                <img src="{{user.photo}}" width="100" />
                 </div>
                 <div class="col-sm-6">
-                <h4>{{user.full_name}}</h4>
+                  <h5>{{user.full_name}}</h5>
+                    <p>Open Since : {{user.date_registered}}</p>
+                    <p> Number of Public Projects: {{user.numProjects}}</p>
+
+
                 </div>
                 </div>
-                <p>Open since: {{user.date_registered}}</p>
+
 
               </div>
               <div class="chart-notes">
@@ -79,7 +57,7 @@
           </div>
           {% endfor %}
         </div>
-          <h1> Followed projects </h1>
+          <h2> Followed projects </h2>
           <hr>
           {% for project in projects %}
           {% if project.description %}
