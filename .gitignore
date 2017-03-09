@@ -1,3 +1,4 @@
 .DS_Store
 newsfeed/db.sqlite3
 newsfeed/newsfeed/__pycache__
+*.pyc
