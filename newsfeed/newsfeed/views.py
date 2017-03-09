@@ -138,6 +138,7 @@ def userFeed(request):
             projectInfo["base"] = "user"
         if projectInfo["description"] == "None" or "":
             del projectInfo["description"]
+        projectInfo["date_created"] = projectInfo["date_created"][:10]
         projectList.append(projectInfo)
         counter += 1
 
@@ -146,8 +147,8 @@ def userFeed(request):
         project = sorted_l[i]
         user = projToUser(project)
         userInfo = retrieveUserInfo(user)
-        userProjects = numProjects(users[i])
-        userInfo["numofProjects"] = userProjects
+        # userProjects = numProjects(users[i])
+        # userInfo["numofProjects"] = userProjects
         userInfo["date_registered"] = userInfo["date_registered"][:10]
         userList.append(userInfo)
 
@@ -159,14 +160,15 @@ def userFollow(request):
     projectList=[]
     for project in projects:
         projectInfo = retrieveProjectInfo(project)
+        projectInfo["date_created"] = projectInfo["date_created"][:10]
         projectList.append(projectInfo)
 
     users = followedUser(user_id)
     userList=[]
     for i in range(2):
         userInfo = retrieveUserInfo(users[i])
-        userProjects = numProjects(users[i])
-        userInfo["numofProjects"] = userProjects
+        # userProjects = numProjects(users[i])
+        # userInfo["numofProjects"] = userProjects
         userInfo["date_registered"] = userInfo["date_registered"][:10]
         userList.append(userInfo)
 

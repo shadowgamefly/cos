@@ -71,7 +71,7 @@
                 </div>
                 </div>
                 <p>Open since: {{user.date_registered}}</p>
-            
+
               </div>
               <div class="chart-notes">
                   <p><a href="https://osf.io/{{user.id}}">View User</a></p>
@@ -88,20 +88,17 @@
           <div class="col-sm-12">
             <div class="chart-wrapper">
                 <div class="chart-title">
-                    
-                    <div class = "twitter" align = "right" top-margin = "1px">
-                        <a href="https://twitter.com/share"  class="twitter-share-button" "data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                            </div>
+                      <a class="twitter-share-button" href="https://twitter.com/share" data-size="large" data-text="Check out this project it's so spicily open" data-url="https://osf.io/{{project.id}}" data-hashtags="openscience" data-related="twitterapi,twitter"> Tweet </a>
                             </div>
 
-                
+
               <div class="chart-stage">
                 <h3>{{project.title}}</h3>
-                
+
                 <p> Date created: {{project.date_created}}   </p>
                 <p>{{project.description}}</p>
-                
-                
+
+
                 <p><a href="https://osf.io/{{project.id}}">View details</a></p>
               </div>
               {%if project.tags%}

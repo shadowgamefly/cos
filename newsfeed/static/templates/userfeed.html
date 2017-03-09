@@ -37,7 +37,7 @@
   {% include 'header.html' %}
 
 <div class="container-fluid">
-    
+
     <div class="row">
         <div class="col-sm-3" style="position: fixed">
             <div class="chart-wrapper">
@@ -88,10 +88,10 @@
           <div class="col-sm-12">
             <div class="chart-wrapper">
               <div class="chart-title">
-                <i>Recommended based on {{project.base}}</i>
-                <div class = "twitter" align = "right" top-margin = "-5px">
-                <a href="https://twitter.com/share"  class="twitter-share-button" "data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </div>
+                <i >Recommended based on {{project.base}}</i>
+                <div style = "float : right">
+                <a class="twitter-share-button" href="https://twitter.com/share" data-text="Check out this project it's so spicily open" data-url="https://osf.io/{{project.id}}" data-hashtags="openscience" data-related="twitterapi,twitter"> Tweet </a>
+              </div>
               </div>
 
               <div class="chart-stage">
@@ -100,9 +100,9 @@
                 <p><a href="https://osf.io/{{project.id}}">View details</a></p>
 
               </div>
-           
+
               {%if project.tags  %}
-             
+
                       <div class="chart-notes">
                   {% for tag in project.tags%}
 
