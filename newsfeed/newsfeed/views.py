@@ -19,13 +19,13 @@ def userProjectsFind(userid): #give name, projects,
         p[pro] = 50
     return Counter(p)
 
-def numProjects(userid):
-    url = "https://api.osf.io/v2/users/" + userid
-    url_nodes = url + "/nodes" + "?format=json";
-    response_node = urllib.request.urlopen(url_nodes)
-    data = json.loads(response_node.read().decode('utf-8'))
+def numProjects(userid): #give name, projects,
+    url = "https://api.osf.io/v2/users/" + userid + "/nodes/?filter%5Bparent%5D=null" + "&format=json"
+    response = urllib.request.urlopen(url)
+    data = json.loads(response.read().decode('utf-8'))
     projects = []
-    return len(data['data'])
+    num = data['links']['meta']['total']
+    return num
 
 def searchTag(tag):
     project_titles = []
@@ -136,7 +136,8 @@ def userFeed(request):
             projectInfo["base"] = "tag"
         else :
             projectInfo["base"] = "user"
-        if projectInfo["description"] == "None" or "":
+
+        if (projectInfo["description"] is  None ) or projectInfo["description"] == "":
             del projectInfo["description"]
         projectInfo["date_created"] = projectInfo["date_created"][:10]
         projectList.append(projectInfo)
@@ -149,6 +150,8 @@ def userFeed(request):
         userInfo = retrieveUserInfo(user)
         # userProjects = numProjects(users[i])
         # userInfo["numofProjects"] = userProjects
+        userInfo["numProjects"] = numProjects(user)
+
         userInfo["date_registered"] = userInfo["date_registered"][:10]
         userList.append(userInfo)
 
@@ -160,7 +163,9 @@ def userFollow(request):
     projectList=[]
     for project in projects:
         projectInfo = retrieveProjectInfo(project)
+
         projectInfo["date_created"] = projectInfo["date_created"][:10]
+
         projectList.append(projectInfo)
 
     users = followedUser(user_id)
@@ -168,7 +173,7 @@ def userFollow(request):
     for i in range(2):
         userInfo = retrieveUserInfo(users[i])
         # userProjects = numProjects(users[i])
-        # userInfo["numofProjects"] = userProjects
+        userInfo["numProjects"] = numProjects(users[i])
         userInfo["date_registered"] = userInfo["date_registered"][:10]
         userList.append(userInfo)
 
