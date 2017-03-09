@@ -41,12 +41,11 @@
   <div class="container-fluid">
 
     <div class="row">
-      <div class="col-sm-3" style="position: fixed">
+      <div class="col-sm-3 hidden-xs" style="position: fixed">
             <!-- <a class="btn btn-primary" background color = #b8c4f2 href="{% url 'home' %}" role="button">View User Feed</a> -->
             <a class="twitter-timeline"
-               height= "100"
-      href="https://twitter.com/osframework" data-chrome="nofooter"
-      data-tweet-limit="2">
+               height= "500"
+      href="https://twitter.com/osframework" data-chrome="nofooter">
       Tweets by @twittername</a>
       <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
       </div>
@@ -88,18 +87,25 @@
           <div class="col-sm-12">
             <div class="chart-wrapper">
                 <div class="chart-title">
-                      <a class="twitter-share-button" href="https://twitter.com/share" data-size="large" data-text="Check out this project it's so spicily open" data-url="https://osf.io/{{project.id}}" data-hashtags="openscience" data-related="twitterapi,twitter"> Tweet </a>
-                            </div>
-
+                  <div align = "right">
+                      <a class="twitter-share-button" href="https://twitter.com/share" data-text="Check out this project it's so spicily open" data-url="https://osf.io/{{project.id}}" data-hashtags="openscience" data-related="twitterapi,twitter"> Tweet </a>
+                    </div>
+                </div>
 
               <div class="chart-stage">
-                <h3>{{project.title}}</h3>
-
+                <h3>{{project.title}}  <small><a href="https://osf.io/{{project.id}}"<span class="glyphicon glyphicon-share" aria-hidden="true"></span></a> </small></h3>
                 <p> Date created: {{project.date_created}}   </p>
-                <p>{{project.description}}</p>
+                <p class="collapse">{{project.description}}</p>
 
+                <div class="collapse" id={{project.id}}>
+                  <div class="card card-block">
+                      <p>{{project.description}}</p>
+                  </div>
+                </div>
 
-                <p><a href="https://osf.io/{{project.id}}">View details</a></p>
+                <p><a data-target="#{{project.id}}" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls={{project.id}}>
+                  View Description
+                </a></p>
               </div>
               {%if project.tags%}
               <div class="chart-notes">
